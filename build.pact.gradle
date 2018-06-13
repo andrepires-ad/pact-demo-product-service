@@ -1,0 +1,14 @@
+
+
+test {
+	systemProperty 'pactbroker.host', project.properties['pactbroker.host']
+	systemProperty 'pact.provider.version', project.version == "latest" ? scmVersion.version : project.version
+}
+
+task contractTest() {
+	dependsOn test
+	doFirst {
+		println("Verifying Pact Contracts")
+	}
+}
+
